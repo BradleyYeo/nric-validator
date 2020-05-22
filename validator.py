@@ -1,3 +1,4 @@
+
 def last_char1(val):
     switch = {
         0: 'J',
@@ -17,7 +18,7 @@ def last_char1(val):
 
 def last_char2(val):
     switch = {
-        0: 'X',
+        0: 'Total',
         1: 'W',
         2: 'U',
         3: 'T',
@@ -33,20 +34,17 @@ def last_char2(val):
 
 
 def main():
-    # this is a simple script to valiate nric numbers
+    nric = input('Enter the nric to validate: ').upper()
 
-    # grab user input
-    nric = input('Enter the nric to validate: ')
+    Total = (int(nric[1]) * 2) + (int(nric[2]) * 7) + (int(nric[3]) * 6) + (int(nric[4]) * 5) + (int(nric[5]) * 4) + (int(nric[6]) * 3) + (int(nric[7]) * 2)
 
-    x = (int(nric[1]) * 2) + (int(nric[2]) * 7) + (int(nric[3]) * 6) + (int(nric[4]) * 5) + (int(nric[5]) * 4) + (int(nric[6]) * 3) + (int(nric[7]) * 2)
+    if nric[0] in 'TG':
+        Total = Total + 4
 
-    if nric[0] == 'T' or nric[0] == 'G':
-        x = x + 4
+    Remainder = Total % 11
 
-    y = x % 11
-
-    if nric[0] == 'S' or nric[0] == 'T':
-        z = last_char1(y)
+    if nric[0] in 'ST':
+        z = last_char1(Remainder)
 
         if nric[8] == z:
             print('nric is valid!\n')
@@ -55,7 +53,7 @@ def main():
             print('nric is invalid!\n')
             quit()
     elif nric[0] == 'F' or nric[0] == 'G':
-        z = last_char2(y)
+        z = last_char2(Remainder)
 
         if nric[8] == z:
             print('nric is valid!\n')
